@@ -7,18 +7,28 @@ export const MenuContainerStyled = styled.div`
 
 export const FiltersContainer = styled.div`
   display: flex;
-  width: 50%;
+  width: 60%;
   justify-content: space-around;
   align-items: center;
 `;
 
 export const FilterButton = styled.button`
-  height: 40px;
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+  border-color: black;
+  height: 30px;
   text-align: center;
   justify-content: center;
-  background: ${(props) => (props.active ? "#0ad4fa" : "lightgrey")};
-  border-color: ${(props) => (props.active ? "#0ad4fa" : "lightgrey")};
-  border-radius: 40px;
+  background: ${(props) => (props.active ? "#0ad4fa" : "none")};
+  border-color: ${(props) => (props.active ? "#0ad4fa" : "none")};
   opacity: 0.7;
+  margin-left: 5px;
   cursor: pointer;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
 `;

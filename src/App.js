@@ -1,12 +1,18 @@
-import { Header, ContainerBody, Menu, Card } from "./components";
+import { Header, ContainerBody, Menu } from "./components";
+
+import { UserProvider, ProductProvider } from "./contexts";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <ContainerBody>
-        <Menu />
-        <Card />
-      </ContainerBody>
+      <UserProvider>
+        <ProductProvider>
+          <Header />
+          <ContainerBody>
+            <Menu />
+          </ContainerBody>
+        </ProductProvider>
+      </UserProvider>
     </div>
   );
 }
