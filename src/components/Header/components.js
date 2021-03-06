@@ -26,14 +26,41 @@ export const UserNameAndCoins = styled.div`
   display: flex;
   min-width: 150px;
   justify-content: space-around;
+  align-items: center;
   margin-right: 20px;
+`;
+export const CoinAndCredits = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  width: auto;
+  background: lightgrey;
+  height: 48px;
+  margin: 5px;
+  margin-left: 25px;
+  padding: 3px;
+  border-radius: 25px;
+  & h5 {
+    margin-left: 5px;
+    padding-left: 5px;
+  }
+
+  & img {
+    padding-top: 5px;
+    margin-right: 5px;
+  }
+  :hover {
+    background: silver;
+    cursor: pointer;
+  }
 `;
 export const LogoImg = styled.img`
   width: 39px;
   height: 36px;
 `;
 
-export const AddCoinsModal = styled.div`
+export const Modal = styled.div`
   position: fixed;
   z-index: 1;
   display: flex;
@@ -50,7 +77,7 @@ export const AddCoinsModal = styled.div`
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 400px;
+    width: 800px;
   }
   .close {
     position: absolute;

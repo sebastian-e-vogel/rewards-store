@@ -7,13 +7,21 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = React.useState();
   const [status, setStatus] = React.useState("pending");
   const [addPointsStatus, setAddPointsStatus] = React.useState();
+  const [redeemStatus, setRedeemStatus] = React.useState();
 
   async function handleRedeem(product) {
+    setRedeemStatus("pending");
+
     if (!user) return;
 
-    return api.redeem(product).then(() => {
+    const result = await api.redeem(product._id).then((result) => {
       setUser({ ...user, points: user.points - product.cost });
+      setRedeemStatus("resolved");
+      if (result.ok) return true;
+      return false;
     });
+
+    return result;
   }
 
   async function handleAddPoints(amount) {
@@ -37,12 +45,13 @@ const UserProvider = ({ children }) => {
   }, []);
 
   if (!user || status === "pending") {
-    return <div>cargando...</div>;
+    return <div>loading...</div>;
   }
 
   const state = {
     user,
     addPointsStatus,
+    redeemStatus,
   };
   const actions = {
     addPoints: handleAddPoints,

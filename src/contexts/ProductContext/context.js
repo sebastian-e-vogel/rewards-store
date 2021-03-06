@@ -14,7 +14,7 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   if (!products || status === "pending") {
-    return <div>cargando...</div>;
+    return <div>loading...</div>;
   }
 
   const state = {

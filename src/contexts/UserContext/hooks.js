@@ -21,8 +21,9 @@ export function useUser() {
 
 export function useRedeem() {
   const {
+    state: { redeemStatus },
     actions: { redeem },
   } = React.useContext(UserContext);
 
-  return redeem;
+  return [redeem, redeemStatus];
 }

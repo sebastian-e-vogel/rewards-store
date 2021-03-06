@@ -21,10 +21,15 @@ export default {
       return result;
     },
   },
-  redeem: (product) =>
-    Promise.resolve(
-      `You have redeem the product successfully (${product.name})`
-    ),
+  redeem: async (productId) => {
+    const redeemResult = await fetch(endpoint + "/redeem", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify({ productId }),
+      headers: { ...header, Accept: "application/json" },
+    });
+    return redeemResult;
+  },
   list: async () => {
     const productsResult = await fetch(endpoint + "/products", {
       headers: header,

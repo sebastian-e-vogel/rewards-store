@@ -7,6 +7,7 @@ import {
 } from "./components";
 import { useProducts } from "../../contexts";
 import ReactPaginate from "react-paginate";
+import { Modal } from "../Header/components";
 
 import { Card } from "../Card";
 import "./styles.css";
@@ -19,6 +20,8 @@ const Menu = () => {
   const [perPage, setPerPage] = React.useState(16);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [pageCount, setPageCount] = React.useState(0);
+  const [isModalRedeemOpen, setModalRedeemOpen] = React.useState();
+  const [modalMessage, setModalMessage] = React.useState();
 
   React.useEffect(() => {
     const slice = products.slice(offset, offset + perPage);
@@ -51,7 +54,14 @@ const Menu = () => {
   }, [selectedFilter, sliceProducts]);
 
   const Filters = ["Most recent", "Lowest price", "Highest price"];
-
+  const finishedRedeem = (result) => {
+    if (result) {
+      setModalMessage("Your redeem was successful");
+      return setModalRedeemOpen(true);
+    }
+    setModalMessage("An error occurred, please try again later");
+    setModalRedeemOpen(true);
+  };
   return (
     <>
       <MenuContainerStyled>
@@ -60,7 +70,7 @@ const Menu = () => {
             previousLabel={"prev"}
             nextLabel={"next"}
             breakClassName={"break-me"}
-            pageCount={2}
+            pageCount={pageCount}
             onPageChange={handlePageClick}
             containerClassName={"pagination"}
             subContainerClassName={"pages pagination"}
@@ -81,12 +91,23 @@ const Menu = () => {
           ))}
         </FiltersContainer>
       </MenuContainerStyled>
+
       <Wrapper>
         {sliceProducts &&
           filteredProducts.map((product) => {
-            return <Card product={product} />;
+            return <Card product={product} finishedRedeem={finishedRedeem} />;
           })}
       </Wrapper>
+      {isModalRedeemOpen && (
+        <Modal style={{ marginLeft: -40 }}>
+          <div className="modal-content">
+            <span onClick={() => setModalRedeemOpen(false)} className="close">
+              &times;
+            </span>
+            <h4>{modalMessage}</h4>
+          </div>
+        </Modal>
+      )}
     </>
   );
 };
