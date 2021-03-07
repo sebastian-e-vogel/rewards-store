@@ -17,7 +17,7 @@ const Menu = () => {
   const [selectedFilter, setSelectedFilter] = React.useState("Most recent");
   const [sliceProducts, setSliceProducts] = React.useState();
   const [offset, setOffset] = React.useState(0);
-  const [perPage, setPerPage] = React.useState(16);
+  const [perPage] = React.useState(16);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [pageCount, setPageCount] = React.useState(0);
   const [isModalRedeemOpen, setModalRedeemOpen] = React.useState();
@@ -27,7 +27,7 @@ const Menu = () => {
     const slice = products.slice(offset, offset + perPage);
     setSliceProducts(slice);
     setPageCount(Math.ceil(products.length / perPage));
-  }, [offset]);
+  }, [offset, perPage, products]);
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;

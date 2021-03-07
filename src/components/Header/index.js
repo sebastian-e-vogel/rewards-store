@@ -19,7 +19,7 @@ const Header = () => {
   const [isHistoryModalOpen, setOpenHistoryModal] = React.useState(false);
   const user = useUser();
   const [offset, setOffset] = React.useState(0);
-  const [perPage, setPerPage] = React.useState(16);
+  const [perPage] = React.useState(16);
   const [, setCurrentPage] = React.useState(0);
   const [pageCount, setPageCount] = React.useState(0);
   const [sliceProducts, setSliceProducts] = React.useState();
@@ -35,7 +35,7 @@ const Header = () => {
     const slice = user.redeemHistory.slice(offset, offset + perPage);
     setSliceProducts(slice);
     setPageCount(Math.ceil(user.redeemHistory.length / perPage));
-  }, [offset]);
+  }, [offset, perPage]);
 
   const handleAddPoints = async (ammount) => {
     const result = await addPoints(ammount);
