@@ -17,7 +17,7 @@ const Card = ({ product, finishedRedeem }) => {
   return (
     <CardContainer>
       <ImageContainer>
-        <img src={product.img.url} />
+        <img src={product.img.url} alt={product.name} />
         <div>
           <BuyBlue />
         </div>

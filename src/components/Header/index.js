@@ -35,7 +35,7 @@ const Header = () => {
     const slice = user.redeemHistory.slice(offset, offset + perPage);
     setSliceProducts(slice);
     setPageCount(Math.ceil(user.redeemHistory.length / perPage));
-  }, [offset, perPage]);
+  }, [offset, perPage, user.redeemHistory]);
 
   const handleAddPoints = async (ammount) => {
     const result = await addPoints(ammount);
